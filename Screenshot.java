@@ -25,23 +25,4 @@ public class Screenshot {
 }
 
 
-    /*File path = Environment.getExternalStorageDirectory();// + "/Screenshots_from_Screenshot_app/";
-    File dir = new File(path + "/Screenshots_from_Screenshot_app/");
-                dir.mkdir();
-                        File filename = new File(dir, "screenshot.jpg");
-                        OutputStream out = null;
-                        try {
-                        out = new FileOutputStream(filename);
-                        // choose JPEG format
-                        a.compress(Bitmap.CompressFormat.JPEG, 40, out);
-                        out.flush();
-                        out.close();
-
-                        } catch (FileNotFoundException e) {
-                        e.printStackTrace();
-                        } catch (IOException e) {
-                        e.printStackTrace();
-                        }
-*/
-
 

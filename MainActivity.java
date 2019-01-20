@@ -1,6 +1,7 @@
 package com.example.screenshotapplication;
 
 import android.Manifest;
+import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.Color;
 import android.os.Environment;
@@ -26,6 +27,7 @@ public class MainActivity extends AppCompatActivity {
     private ImageView image;
     private Bitmap a;
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -42,7 +44,7 @@ public class MainActivity extends AppCompatActivity {
         EditText editText9 = (EditText) findViewById(R.id.editText9);
         EditText editText10 = (EditText) findViewById(R.id.editText10);
 
-
+        Button galleryBtn = (Button) findViewById(R.id.galleryBtn);
         main = findViewById(R.id.main);
         image = (ImageView) findViewById(R.id.imageView);
         Button screenshot_button = (Button) findViewById(R.id.screenshot_button);
@@ -52,53 +54,33 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View view) {
                 a = Screenshot.takescreenshotofRootView(image);
                 image.setImageBitmap(a);
-                main.setBackgroundColor(Color.parseColor("#997000"));
 
-                String filename = "Screenshots_from_app"
-                String path = Environment.getExternalStorageDirectory().toString() + "/" + filename;
+                //String filename = "Screenshots_from_app";
+                File path = Environment.getExternalStorageDirectory();//.toString() + "/" + filename;
                 File save_spot = new File(path + "/Screenshots_from_Screenshot_app/");
                 save_spot.mkdir();
-                File filename1 = new File(save_spot, "screenshot.jpg");
+                File filename = new File(save_spot, "screenshot.jpg");
                 OutputStream out = null;
                 Toast.makeText(getApplicationContext(), "Screenshot Saved!", Toast.LENGTH_SHORT).show();
                 try {
-                    out = new FileOutputStream(filename1);
-                    // choose JPEG format
+                    out = new FileOutputStream(filename);
                     a.compress(Bitmap.CompressFormat.JPEG, 40, out);
                     out.flush();
                     out.close();
-
                 } catch (FileNotFoundException e) {
                     e.printStackTrace();
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
+            }
+        });
 
-                /*ByteArrayOutputStream bytes = new ByteArrayOutputStream();
-                a.compress(Bitmap.CompressFormat.JPEG, 40, bytes);
-                File f = new File(Environment.getExternalStorageDirectory()
-                        + File.separator + "test.jpg");
-                try {
-                    f.createNewFile();
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
-                FileOutputStream fo = null;
-                try {
-                    fo = new FileOutputStream(f);
-                } catch (FileNotFoundException e) {
-                    e.printStackTrace();
-                }
-                try {
-                    fo.write(bytes.toByteArray());
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
-                try {
-                    fo.close();
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }*/
+        galleryBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent open_gallery = new Intent(Intent.ACTION_PICK);//getPackageManager().getLaunchIntentForPackage("com.android.gallery");
+                open_gallery.setType("image/*");
+                startActivity(open_gallery);
             }
         });
     }
