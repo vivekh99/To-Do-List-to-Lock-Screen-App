@@ -11,16 +11,16 @@ import java.io.IOException;
 import java.io.OutputStream;
 
 public class Screenshot {
-    public static Bitmap takescreenshot(View v) {
-        v.setDrawingCacheEnabled(true);
-        v.buildDrawingCache(true);
-        Bitmap b = Bitmap.createBitmap(v.getDrawingCache());
-        v.setDrawingCacheEnabled(false);
-        return b;
+    public static Bitmap takescreenshot(View vivek) {
+        vivek.setDrawingCacheEnabled(true);
+        vivek.buildDrawingCache(true);
+        Bitmap c = Bitmap.createBitmap(v.getDrawingCache());
+        vivek.setDrawingCacheEnabled(false);
+        return c;
     }
 
-    public static Bitmap takescreenshotofRootView(View v) {
-        return takescreenshot(v.getRootView());
+    public static Bitmap takescreenshotofRootView(View vivek) {
+        return takescreenshot(vivek.getRootView());
     }
 }
 
