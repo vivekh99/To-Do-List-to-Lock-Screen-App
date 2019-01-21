@@ -4,10 +4,12 @@ import android.Manifest;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.Color;
+import android.media.MediaScannerConnection;
 import android.os.Environment;
 import android.support.v4.app.ActivityCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -56,15 +58,15 @@ public class MainActivity extends AppCompatActivity {
                 image.setImageBitmap(a);
 
                 //String filename = "Screenshots_from_app";
-                File path = Environment.getExternalStorageDirectory();//.toString() + "/" + filename;
-                File save_spot = new File(path + "/Screenshots_from_Screenshot_app/");
+                File path = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DCIM);//.toString() + "/" + filename;
+                File save_spot = new File(path + "/Camera/Viveks_Screenshots");
                 save_spot.mkdir();
-                File filename = new File(save_spot, "screenshot.jpg");
+                File filename = new File(save_spot, "Viveks Screenshot");
                 OutputStream out = null;
-                Toast.makeText(getApplicationContext(), "Screenshot Saved!", Toast.LENGTH_SHORT).show();
+                Toast.makeText(getApplicationContext(), "Screenshot Saved! Open Gallery to View", Toast.LENGTH_SHORT).show();
                 try {
                     out = new FileOutputStream(filename);
-                    a.compress(Bitmap.CompressFormat.JPEG, 40, out);
+                    a.compress(Bitmap.CompressFormat.JPEG, 60, out);
                     out.flush();
                     out.close();
                 } catch (FileNotFoundException e) {
@@ -72,6 +74,8 @@ public class MainActivity extends AppCompatActivity {
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
+
+                MediaScannerConnection.scanFile(getApplicationContext(), new String[]{filename.getPath()}, new String[]{"image/jpeg"}, null);
             }
         });
 
