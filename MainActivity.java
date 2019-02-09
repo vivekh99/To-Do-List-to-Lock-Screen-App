@@ -1,10 +1,12 @@
 package com.example.screenshotapplication;
 
 import android.Manifest;
+import android.app.WallpaperManager;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Bitmap;
 
+import android.graphics.BitmapFactory;
 import android.media.MediaScannerConnection;
 import android.os.Environment;
 import android.preference.PreferenceManager;
@@ -53,6 +55,8 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         ActivityCompat.requestPermissions(MainActivity.this, new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE}, 1);
+        ActivityCompat.requestPermissions(MainActivity.this, new String[]{Manifest.permission.READ_EXTERNAL_STORAGE}, 1);
+        ActivityCompat.requestPermissions(MainActivity.this, new String[]{Manifest.permission.SET_WALLPAPER}, 1);
         editText1 = (EditText) findViewById(R.id.editText1);
         editText2 = (EditText) findViewById(R.id.editText2);
         editText3 = (EditText) findViewById(R.id.editText3);
@@ -66,6 +70,7 @@ public class MainActivity extends AppCompatActivity {
         edittextName = (EditText) findViewById(R.id.editTextName);
         screenshotbtn = (Button) findViewById(R.id.screenshot_button);
         Button galleryBtn = (Button) findViewById(R.id.galleryBtn);
+        Button lsWallpaper = (Button) findViewById(R.id.LockScreenbtn);
 
         sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
         checkBox1 = (CheckBox) findViewById(R.id.checkBox);
@@ -76,92 +81,91 @@ public class MainActivity extends AppCompatActivity {
         checkBox1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(checkBox1.isChecked()){
+                if (checkBox1.isChecked()) {
                     Toast.makeText(getApplicationContext(), "Text has been Saved! Closing out of the app will not delete the input", Toast.LENGTH_LONG).show();
                     //for checkbox
                     sharedEditor.putString(getString(R.string.checkbox), "True");
                     sharedEditor.commit();
                     //for list name
                     String edittextNAME = edittextName.getText().toString();
-                    sharedEditor.putString(getString(R.string.editTextname),edittextNAME);
+                    sharedEditor.putString(getString(R.string.editTextname), edittextNAME);
                     sharedEditor.commit();
                     //for task 1
                     String edittext1 = editText1.getText().toString();
-                    sharedEditor.putString(getString(R.string.editText1),edittext1);
+                    sharedEditor.putString(getString(R.string.editText1), edittext1);
                     sharedEditor.commit();
                     //for task 2
                     String edittext2 = editText2.getText().toString();
-                    sharedEditor.putString(getString(R.string.editText2),edittext2);
+                    sharedEditor.putString(getString(R.string.editText2), edittext2);
                     sharedEditor.commit();
                     //for task 3
                     String edittext3 = editText3.getText().toString();
-                    sharedEditor.putString(getString(R.string.editText3),edittext3);
+                    sharedEditor.putString(getString(R.string.editText3), edittext3);
                     sharedEditor.commit();
                     //for task 4
                     String edittext4 = editText4.getText().toString();
-                    sharedEditor.putString(getString(R.string.editText4),edittext4);
+                    sharedEditor.putString(getString(R.string.editText4), edittext4);
                     sharedEditor.commit();
                     //for task 5
                     String edittext5 = editText5.getText().toString();
-                    sharedEditor.putString(getString(R.string.editText5),edittext5);
+                    sharedEditor.putString(getString(R.string.editText5), edittext5);
                     sharedEditor.commit();
                     //for task 6
                     String edittext6 = editText6.getText().toString();
-                    sharedEditor.putString(getString(R.string.editText6),edittext6);
+                    sharedEditor.putString(getString(R.string.editText6), edittext6);
                     sharedEditor.commit();
                     //for task 7
                     String edittext7 = editText7.getText().toString();
-                    sharedEditor.putString(getString(R.string.editText7),edittext7);
+                    sharedEditor.putString(getString(R.string.editText7), edittext7);
                     sharedEditor.commit();
                     //for task 8
                     String edittext8 = editText8.getText().toString();
-                    sharedEditor.putString(getString(R.string.editText8),edittext8);
+                    sharedEditor.putString(getString(R.string.editText8), edittext8);
                     sharedEditor.commit();
                     //for task 9
                     String edittext9 = editText9.getText().toString();
-                    sharedEditor.putString(getString(R.string.editText9),edittext9);
+                    sharedEditor.putString(getString(R.string.editText9), edittext9);
                     sharedEditor.commit();
                     //for task 10
                     String edittext10 = editText10.getText().toString();
-                    sharedEditor.putString(getString(R.string.editText10),edittext10);
+                    sharedEditor.putString(getString(R.string.editText10), edittext10);
                     sharedEditor.commit();
-                }
-                else{
+                } else {
                     //for checkbox
                     sharedEditor.putString(getString(R.string.checkbox), "False");
                     sharedEditor.commit();
                     //for list name
-                    sharedEditor.putString(getString(R.string.editTextname),"");
+                    sharedEditor.putString(getString(R.string.editTextname), "");
                     sharedEditor.commit();
                     //for task 1
-                    sharedEditor.putString(getString(R.string.editText1),"");
+                    sharedEditor.putString(getString(R.string.editText1), "");
                     sharedEditor.commit();
                     //for task 2
-                    sharedEditor.putString(getString(R.string.editText2),"");
+                    sharedEditor.putString(getString(R.string.editText2), "");
                     sharedEditor.commit();
                     //for task 3
-                    sharedEditor.putString(getString(R.string.editText3),"");
+                    sharedEditor.putString(getString(R.string.editText3), "");
                     sharedEditor.commit();
                     //for task 4
-                    sharedEditor.putString(getString(R.string.editText4),"");
+                    sharedEditor.putString(getString(R.string.editText4), "");
                     sharedEditor.commit();
                     //for task 5
-                    sharedEditor.putString(getString(R.string.editText5),"");
+                    sharedEditor.putString(getString(R.string.editText5), "");
                     sharedEditor.commit();
                     //for task 6
-                    sharedEditor.putString(getString(R.string.editText6),"");
+                    sharedEditor.putString(getString(R.string.editText6), "");
                     sharedEditor.commit();
                     //for task 7
-                    sharedEditor.putString(getString(R.string.editText7),"");
+                    sharedEditor.putString(getString(R.string.editText7), "");
                     sharedEditor.commit();
                     //for task 8
-                    sharedEditor.putString(getString(R.string.editText8),"");
+                    sharedEditor.putString(getString(R.string.editText8), "");
                     sharedEditor.commit();
                     //for task 9
-                    sharedEditor.putString(getString(R.string.editText9),"");
+                    sharedEditor.putString(getString(R.string.editText9), "");
                     sharedEditor.commit();
                     //for task 10
-                    sharedEditor.putString(getString(R.string.editText10),"");
+                    sharedEditor.putString(getString(R.string.editText10), "");
                     sharedEditor.commit();
                 }
             }
@@ -179,9 +183,9 @@ public class MainActivity extends AppCompatActivity {
 
                 //String filename = "Screenshots_from_app";
                 File path = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DCIM);//.toString() + "/" + filename;
-                File save_spot = new File(path + "/Camera/Viveks_Screenshots");
+                File save_spot = new File(path + "/Camera/Vivek's_Screenshots");
                 save_spot.mkdir();
-                File filename = new File(save_spot, "Viveks Screenshot");
+                File filename = new File(save_spot, "Vivek's Screenshot");
                 OutputStream out = null;
                 Toast.makeText(getApplicationContext(), "Screenshot Saved! Open Gallery to View", Toast.LENGTH_SHORT).show();
                 try {
@@ -202,14 +206,23 @@ public class MainActivity extends AppCompatActivity {
         galleryBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent open_gallery = new Intent(Intent.ACTION_PICK);//getPackageManager().getLaunchIntentForPackage("com.android.gallery");
+                Intent open_gallery = new Intent(Intent.ACTION_VIEW);
                 open_gallery.setType("image/*");
                 startActivity(open_gallery);
             }
         });
+
+        lsWallpaper.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                //Bitmap b = BitmapFactory.decodeResource(getResources(), R.id.imageView);
+
+                setLockScreenWallpaper();
+            }
+        });
     }
 
-    public void checkSharedPreferences(){
+    public void checkSharedPreferences() {
         String checkbox = sharedPreferences.getString(getString(R.string.checkbox), "False");
         String txtName = sharedPreferences.getString(getString(R.string.editTextname), "");
         String text1 = sharedPreferences.getString(getString(R.string.editText1), "");
@@ -235,14 +248,26 @@ public class MainActivity extends AppCompatActivity {
         editText9.setText(text9);
         editText10.setText(text10);
 
-        if(checkBox1.equals("True")) {
+        if (checkBox1.equals("True")) {
             checkBox1.setChecked(true);
-        }
-        else{
+        } else {
             checkBox1.setChecked(false);
         }
     }
 
+    public void setLockScreenWallpaper() {
+        //WallpaperManager m = WallpaperManager.getInstance(getApplicationContext());
+        Toast.makeText(getApplicationContext(), "Lockscreen Wallpaper set!", Toast.LENGTH_SHORT).show();
+        /*try{
+            m.setBitmap(a, null, true, WallpaperManager.FLAG_LOCK);
+        }
+        catch (IOException e){
+            e.printStackTrace();
+        }
+
+    }*/
+
+    }
 }
 
 
