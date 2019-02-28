@@ -1,4 +1,4 @@
-# TodoList_to_LockscreenApp
+# To-Do-List-to-Lockscreen-App
 
 The goal of this app is to create a To-Do list, which will then be screenshotted within app and then can be set as your lockscreen
 
