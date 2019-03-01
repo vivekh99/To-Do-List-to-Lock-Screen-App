@@ -70,7 +70,7 @@ public class MainActivity extends AppCompatActivity {
         edittextName = (EditText) findViewById(R.id.editTextName);
         screenshotbtn = (Button) findViewById(R.id.screenshot_button);
         Button galleryBtn = (Button) findViewById(R.id.galleryBtn);
-        Button lsWallpaper = (Button) findViewById(R.id.LockScreenbtn);
+        //Button lsWallpaper = (Button) findViewById(R.id.LockScreenbtn);
 
         sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
         checkBox1 = (CheckBox) findViewById(R.id.checkBox);
@@ -211,15 +211,6 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(open_gallery);
             }
         });
-
-        lsWallpaper.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                //Bitmap b = BitmapFactory.decodeResource(getResources(), R.id.imageView);
-
-                setLockScreenWallpaper();
-            }
-        });
     }
 
     public void checkSharedPreferences() {
@@ -253,20 +244,6 @@ public class MainActivity extends AppCompatActivity {
         } else {
             checkBox1.setChecked(false);
         }
-    }
-
-    public void setLockScreenWallpaper() {
-        //WallpaperManager m = WallpaperManager.getInstance(getApplicationContext());
-        Toast.makeText(getApplicationContext(), "Lockscreen Wallpaper set!", Toast.LENGTH_SHORT).show();
-        /*try{
-            m.setBitmap(a, null, true, WallpaperManager.FLAG_LOCK);
-        }
-        catch (IOException e){
-            e.printStackTrace();
-        }
-
-    }*/
-
     }
 }
 
