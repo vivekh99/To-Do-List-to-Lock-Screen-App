@@ -1,0 +1,16 @@
+<resources>
+    <string name="app_name">ScreenshotApplication</string>
+    <string name="editText1">com.example.screenshotapplication.editText1</string>
+    <string name="editText2">com.example.screenshotapplication.editText2</string>
+    <string name="editText3">com.example.screenshotapplication.editText3</string>
+    <string name="editText4">com.example.screenshotapplication.editText4</string>
+    <string name="editText5">com.example.screenshotapplication.editText5</string>
+    <string name="editText6">com.example.screenshotapplication.editText6</string>
+    <string name="editText7">com.example.screenshotapplication.editText7</string>
+    <string name="editText8">com.example.screenshotapplication.editText8</string>
+    <string name="editText9">com.example.screenshotapplication.editText9</string>
+    <string name="editText10">com.example.screenshotapplication.editText10</string>
+    <string name="editTextname">com.example.screenshotapplication.editTextname</string>
+    <string name="checkbox">com.example.screenshotapplication.checkbox</string>
+
+</resources>
